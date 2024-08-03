@@ -14,6 +14,10 @@
 		A6FF32CE2C5CA0DF00FEBA0C /* MovieTVShowFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FF32CD2C5CA0DF00FEBA0C /* MovieTVShowFinderTests.swift */; };
 		A6FF32D82C5CA0DF00FEBA0C /* MovieTVShowFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FF32D72C5CA0DF00FEBA0C /* MovieTVShowFinderUITests.swift */; };
 		A6FF32DA2C5CA0DF00FEBA0C /* MovieTVShowFinderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FF32D92C5CA0DF00FEBA0C /* MovieTVShowFinderUITestsLaunchTests.swift */; };
+		A6FF32E92C5DD9E600FEBA0C /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FF32E82C5DD9E600FEBA0C /* Endpoint.swift */; };
+		A6FF32ED2C5DDA2B00FEBA0C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FF32EC2C5DDA2B00FEBA0C /* Networking.swift */; };
+		A6FF32EF2C5DDAA100FEBA0C /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FF32EE2C5DDAA100FEBA0C /* RequestError.swift */; };
+		A6FF32F12C5DE69B00FEBA0C /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FF32F02C5DE69B00FEBA0C /* RequestMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		A6FF32D32C5CA0DF00FEBA0C /* MovieTVShowFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieTVShowFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6FF32D72C5CA0DF00FEBA0C /* MovieTVShowFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTVShowFinderUITests.swift; sourceTree = "<group>"; };
 		A6FF32D92C5CA0DF00FEBA0C /* MovieTVShowFinderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTVShowFinderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A6FF32E82C5DD9E600FEBA0C /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		A6FF32EC2C5DDA2B00FEBA0C /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		A6FF32EE2C5DDAA100FEBA0C /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		A6FF32F02C5DE69B00FEBA0C /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,7 @@
 		A6FF32BB2C5CA0DE00FEBA0C /* MovieTVShowFinder */ = {
 			isa = PBXGroup;
 			children = (
+				A6FF32E62C5DD9A500FEBA0C /* Network */,
 				A6FF32BC2C5CA0DE00FEBA0C /* MovieTVShowFinderApp.swift */,
 				A6FF32BE2C5CA0DE00FEBA0C /* ContentView.swift */,
 				A6FF32C02C5CA0DF00FEBA0C /* Assets.xcassets */,
@@ -125,6 +134,25 @@
 				A6FF32D92C5CA0DF00FEBA0C /* MovieTVShowFinderUITestsLaunchTests.swift */,
 			);
 			path = MovieTVShowFinderUITests;
+			sourceTree = "<group>";
+		};
+		A6FF32E62C5DD9A500FEBA0C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A6FF32F42C5DEBB300FEBA0C /* Base */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A6FF32F42C5DEBB300FEBA0C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A6FF32F02C5DE69B00FEBA0C /* RequestMethod.swift */,
+				A6FF32EE2C5DDAA100FEBA0C /* RequestError.swift */,
+				A6FF32EC2C5DDA2B00FEBA0C /* Networking.swift */,
+				A6FF32E82C5DD9E600FEBA0C /* Endpoint.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +286,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6FF32BF2C5CA0DE00FEBA0C /* ContentView.swift in Sources */,
+				A6FF32EF2C5DDAA100FEBA0C /* RequestError.swift in Sources */,
+				A6FF32E92C5DD9E600FEBA0C /* Endpoint.swift in Sources */,
 				A6FF32BD2C5CA0DE00FEBA0C /* MovieTVShowFinderApp.swift in Sources */,
+				A6FF32F12C5DE69B00FEBA0C /* RequestMethod.swift in Sources */,
+				A6FF32ED2C5DDA2B00FEBA0C /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
