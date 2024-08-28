@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct Network: Networking {}
+
+extension Network {
+    static let imageHostPath: String = "https://image.tmdb.org/t/p/w500"
+}
+
 protocol Networking {
     func execute<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async -> Result<T, RequestError>
 }
@@ -14,6 +20,7 @@ protocol Networking {
 extension Networking {
     func execute<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async -> Result<T, RequestError> {
         var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
         
