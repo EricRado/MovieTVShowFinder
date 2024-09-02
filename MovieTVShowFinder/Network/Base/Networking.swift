@@ -10,7 +10,8 @@ import Foundation
 struct Network: Networking {}
 
 extension Network {
-    static let imageHostPath: String = "https://image.tmdb.org/t/p/w500"
+    static let mediumImageSizeHostPath = "https://image.tmdb.org/t/p/w500"
+    static let originalImageSizeHostPath = "https://image.tmdb.org/t/p/original"
 }
 
 protocol Networking {
@@ -28,7 +29,16 @@ extension Networking {
             return .failure(.invalidUrl)
         }
         
-        var urlRequest = URLRequest(url: url)
+        var urlQueryItems = Array<URLQueryItem>()
+        for (key, value) in endpoint.queryParameters ?? [:] {
+            guard let valueString = value as? String else { continue }
+            urlQueryItems.append(URLQueryItem(name: key, value: valueString))
+        }
+        
+        let urlWithQueryParams = url.appending(queryItems: urlQueryItems)
+        
+        var urlRequest = URLRequest(url: urlWithQueryParams)
+        
         urlRequest.httpMethod = endpoint.method.rawValue
         urlRequest.allHTTPHeaderFields = endpoint.headers
         
