@@ -43,10 +43,10 @@ struct MovieDTO: Decodable, Identifiable {
     }
     
     var backdropImageUrlString: String {
-        Network.imageHostPath + backdropPath
+        Network.originalImageSizeHostPath + backdropPath
     }
     
     var posterImageUrlString: String {
-        Network.imageHostPath + posterPath
+        Network.mediumImageSizeHostPath + posterPath
     }
 }

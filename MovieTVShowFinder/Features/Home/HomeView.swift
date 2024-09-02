@@ -13,12 +13,12 @@ struct HomeView: View {
     var body: some View {
         ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: 16) {
-                HeroCarouselView(movies: viewModel.movies)
+                HeroCarouselView(movies: viewModel.heroDatasource)
                 
                 CategoryCarousel(movies: viewModel.movies)
                     .padding(.horizontal,  16)
                 
-                CardCarousel(movies: viewModel.movies)
+                CardCarousel(movies: viewModel.cardCarouselDatasource)
                     .padding(.horizontal, 16)
                 
                 CategoryCarousel(movies: viewModel.movies)
@@ -29,7 +29,7 @@ struct HomeView: View {
         .background(Colors.backgroundColor)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .task {
-            await viewModel.getTrendingMovies()
+            await viewModel.load()
         }
     }
 }

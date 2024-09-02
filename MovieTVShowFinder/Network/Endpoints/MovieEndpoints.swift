@@ -27,7 +27,7 @@ enum MovieEndpoints: Endpoint {
     var path: String {
         switch self {
         case .list(let listType, _):
-            return "/movie/\(listType.rawValue)"
+            return "/3/movie/\(listType.rawValue)"
         case .trending(let timeWindow):
             return "/3/trending/movie/\(timeWindow.rawValue)"
         }
@@ -40,11 +40,18 @@ enum MovieEndpoints: Endpoint {
         }
     }
     
-    var body: [String : Any]? {
+    var queryParameters: [String : Any]? {
         switch self {
         case .list(_, let pageCount):
             return ["page": pageCount]
         case .trending:
+            return nil
+        }
+    }
+    
+    var body: [String : Any]? {
+        switch self {
+        case .list, .trending:
             return nil
         }
     }
