@@ -26,7 +26,7 @@ struct MovieDTO: Decodable, Identifiable {
     let title: String
     let releaseDate: String
     let details: String
-    private let backdropPath: String
+    private let backdropPath: String?
     private let posterPath: String
     let genreIds: [Int]
     let rating: Double
@@ -43,7 +43,9 @@ struct MovieDTO: Decodable, Identifiable {
     }
     
     var backdropImageUrlString: String {
-        Network.originalImageSizeHostPath + backdropPath
+        guard let backdropPath = self.backdropPath else { return "" }
+        
+        return Network.originalImageSizeHostPath + backdropPath
     }
     
     var posterImageUrlString: String {

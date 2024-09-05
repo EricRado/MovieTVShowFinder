@@ -9,6 +9,10 @@ import Foundation
 
 enum MovieEndpoints: Endpoint {
     
+    enum DiscoverQueryParameterKeys: String {
+        case genre = "with_genres"
+    }
+    
     enum TimeWindow: String {
         case day
         case week
@@ -23,9 +27,12 @@ enum MovieEndpoints: Endpoint {
     
     case list(ListType, pageCount: Int)
     case trending(TimeWindow = .day)
+    case discover(parameterAndKeyValues: [(DiscoverQueryParameterKeys, Any)])
     
     var path: String {
         switch self {
+        case .discover:
+            return "/3/discover/movie"
         case .list(let listType, _):
             return "/3/movie/\(listType.rawValue)"
         case .trending(let timeWindow):
@@ -35,13 +42,22 @@ enum MovieEndpoints: Endpoint {
     
     var method: RequestMethod {
         switch self {
-        case .list, .trending:
+        case .discover, .list, .trending:
             return .get
         }
     }
     
     var queryParameters: [String : Any]? {
         switch self {
+        case .discover(let parameterAndKeyValues):
+            var parameters: [String: Any] = [:]
+            
+            for parameterAndKeyValue in parameterAndKeyValues {
+                let (key, value) = parameterAndKeyValue
+                parameters[key.rawValue] = value
+            }
+            
+            return parameters
         case .list(_, let pageCount):
             return ["page": pageCount]
         case .trending:
@@ -51,7 +67,7 @@ enum MovieEndpoints: Endpoint {
     
     var body: [String : Any]? {
         switch self {
-        case .list, .trending:
+        case .discover, .list, .trending:
             return nil
         }
     }

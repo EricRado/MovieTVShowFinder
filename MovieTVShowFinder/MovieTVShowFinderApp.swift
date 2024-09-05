@@ -11,7 +11,9 @@ import SwiftUI
 struct MovieTVShowFinderApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: HomeViewModel(networking: Network()))
+            let network = Network()
+            let genreService = GenreService(network: network)
+            HomeView(viewModel: HomeViewModel(networking: network, genreService: genreService))
         }
     }
 }
