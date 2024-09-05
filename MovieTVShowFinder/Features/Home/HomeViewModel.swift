@@ -52,6 +52,9 @@ final class HomeViewModel: ObservableObject {
         await heroDatasource.append(contentsOf: popularMovies)
         await cardCarouselDatasource.append(contentsOf: trendingByDayMovies)
         await carouselViewModels.append(CarouselViewModel(title: "Trending This Week", movies: trendingByWeekMovies))
+        await carouselViewModels.append(CarouselViewModel(title: "Upcoming", movies: upcomingMovies))
+        await carouselViewModels.append(CarouselViewModel(title: "Top Rated", movies: topRatedMovies))
+        await carouselViewModels.append(CarouselViewModel(title: "Now Playing", movies: nowPlayingMovies))
     }
     
     private func getMovieGenres() async -> [GenreDTO] {
