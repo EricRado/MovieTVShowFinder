@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel
@@ -41,11 +42,14 @@ struct HeroCarouselView: View {
             TabView {
                 ForEach(movies) { movie in
                     ZStack(alignment: .bottom) {
-                        AsyncImage(url: URL(string: movie.backdropImageUrlString), content: { image in
-                            image
-                                .resizable()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        }, placeholder: {})
+                        KFImage(URL(string: movie.backdropImageUrlString))
+                            .placeholder {
+                                Rectangle()
+                                    .foregroundStyle(.gray)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            }
+                            .resizable()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
                         VStack(alignment: .leading, spacing: 8) {
                             Text(movie.title)
@@ -90,13 +94,14 @@ struct CategoryCarousel: View {
                 HStack(alignment: .center, spacing: 8) {
                     ForEach(viewModel.movies) { movie in
                         VStack(alignment: .leading, spacing: 4) {
-                            AsyncImage(url: URL(string: movie.posterImageUrlString)) { phase in
-                                if let image = phase.image {
-                                    image
-                                        .resizable()
+                            KFImage(URL(string: movie.posterImageUrlString))
+                                .placeholder {
+                                    Rectangle()
+                                        .fill(.gray)
                                         .frame(width: 120, height: 150)
                                 }
-                            }
+                                .resizable()
+                                .frame(width: 120, height: 150)
                                 
                             Text(movie.title)
                                 .foregroundStyle(.white)
@@ -123,15 +128,14 @@ struct CardCarousel: View {
                 HStack(alignment: .center, spacing: 4) {
                     ForEach(movies) { movie in
                         ZStack(alignment: .topLeading) {
-                            AsyncImage(url: URL(string: movie.backdropImageUrlString), content: { image in
-                                image
-                                    .resizable()
-                                    .frame(width: 300, height: 175)
-                            }, placeholder: {
-                                Rectangle()
-                                    .foregroundStyle(.gray)
-                                    .frame(width: 300, height: 175)
-                            })
+                            KFImage(URL(string: movie.backdropImageUrlString))
+                                .placeholder {
+                                    Rectangle()
+                                        .foregroundStyle(.gray)
+                                        .frame(width: 300, height: 175)
+                                }
+                                .resizable()
+                                .frame(width: 300, height: 175)
                             
                             VStack(alignment:.leading) {
                                 Text(String(movie.rating) + " | " + movie.releaseDate)
