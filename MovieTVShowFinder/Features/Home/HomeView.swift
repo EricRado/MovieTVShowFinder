@@ -15,14 +15,13 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HeroCarouselView(movies: viewModel.heroDatasource)
                 
-                CategoryCarousel(movies: viewModel.movies)
-                    .padding(.horizontal,  16)
-                
                 CardCarousel(movies: viewModel.cardCarouselDatasource)
                     .padding(.horizontal, 16)
                 
-                CategoryCarousel(movies: viewModel.movies)
-                    .padding(.horizontal, 16)
+                ForEach(viewModel.carouselViewModels) { carouselViewModel in
+                    CategoryCarousel(viewModel: carouselViewModel)
+                        .padding(.horizontal,  16)
+                }
                 
             }
         }
@@ -80,16 +79,16 @@ struct HeroCarouselView: View {
 }
 
 struct CategoryCarousel: View {
-    let movies: [MovieDTO]
+    let viewModel: CarouselViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Action")
+            Text(viewModel.title)
                 .foregroundStyle(.white)
             
             ScrollView(.horizontal) {
                 HStack(alignment: .center, spacing: 8) {
-                    ForEach(movies) { movie in
+                    ForEach(viewModel.movies) { movie in
                         VStack(alignment: .leading, spacing: 4) {
                             AsyncImage(url: URL(string: movie.posterImageUrlString)) { phase in
                                 if let image = phase.image {
@@ -153,5 +152,6 @@ struct CardCarousel: View {
 }
 
 #Preview {
-    HomeView(viewModel: HomeViewModel(networking: Network()))
+    let network = Network()
+    return HomeView(viewModel: HomeViewModel(networking: network, genreService: GenreService(network: network)))
 }
